@@ -1,0 +1,1 @@
+This is a personal project app that allows audience members to vote on games in RoosterTeeth's live game show, "On The Spot".
