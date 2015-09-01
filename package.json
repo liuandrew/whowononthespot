@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "babel-node server.js",
-    "watch": "nodemon --exec babel-node -- server.js"
+    "watch": "nodemon --exec babel-node -- server.js",
+    "postinstall": "bower install && gulp build"
   },
   "dependencies": {
     "alt": "^0.17.1",
