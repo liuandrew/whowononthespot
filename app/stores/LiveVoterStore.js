@@ -4,10 +4,11 @@ import LiveVoterActions from '../actions/LiveVoterActions';
 class LiveVoterStore {
 	constructor() {
 		this.bindActions(LiveVoterActions);
-		this.teams = {};
+		this.teams = [];
 		this.rounds = [];
 		this.officialScores = [];
 		this.votes = [];
+		this.onlineUsers = 0;
 	}
 
 	onSendVoteSuccess() {
@@ -25,6 +26,10 @@ class LiveVoterStore {
 	onGetUpdateFail() {
 
 	}
-}
 
+	onUpdateOnlineUsers(data) {
+		this.onlineUsers = data.onlineUsers;
+	}
+}
+ 
 export default alt.createStore(LiveVoterStore);

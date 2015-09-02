@@ -6,9 +6,15 @@ class LiveVoterActions{
 			'sendVoteSuccess',
 			'sendVoteFail',
 			'getUpdateSuccess',
-			'getUpdateFail'
+			'getUpdateFail',
+			'updateOnlineUsers'
 		);
 	}
+
+	getUpdate() {
+
+	}
+
 }
 
 export default alt.createActions(LiveVoterActions);
