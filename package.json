@@ -1,6 +1,7 @@
 {
   "name": "whowononthespot",
   "version": "1.0.0",
+  "main": "server.js",
   "scripts": {
     "start": "babel-node server.js",
     "watch": "nodemon --exec babel-node -- server.js",
@@ -10,6 +11,7 @@
     "alt": "^0.17.1",
     "babel": "^5.8.23",
     "body-parser": "~1.13.2",
+    "colors": "^1.1.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
@@ -32,7 +34,6 @@
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
-    "gulp-debug": "^2.1.0",
     "gulp-if": "^1.2.5",
     "gulp-less": "^3.0.3",
     "gulp-plumber": "^1.0.1",
