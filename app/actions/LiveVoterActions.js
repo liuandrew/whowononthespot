@@ -12,7 +12,7 @@ class LiveVoterActions{
 	}
 
 	getUpdate() {
-		
+				
 	}
 
 }

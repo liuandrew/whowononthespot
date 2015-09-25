@@ -20,6 +20,13 @@ class LiveVoter extends React.Component {
 			LiveVoterActions.updateOnlineUsers(data);
 		});
 
+		socket.on('update', (data) => {
+
+		});
+
+		socket.on('updateVotes', (data) => {
+
+		});
 	}
 
 	componentWillUnmount() {
@@ -37,7 +44,7 @@ class LiveVoter extends React.Component {
 				<h4>Live viewers now: {this.state.onlineUsers} </h4>
 
 				<h1>this.state.title</h1>
-				<
+				
 			</div>
 		);
 	}
