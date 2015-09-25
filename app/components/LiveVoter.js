@@ -4,14 +4,12 @@ import LiveVoterActions from '../actions/LiveVoterActions';
 
 class LiveVoter extends React.Component {
 	constructor(props) {
-		console.log("live voter initialized");
 		super(props);
 		this.state = LiveVoterStore.getState();
 		this.onChange = this.onChange.bind(this);
 	}
 
 	componentDidMount() {
-		console.log('mounted');
 		LiveVoterStore.listen(this.onChange);
 		LiveVoterActions.getUpdate();
 
@@ -37,6 +35,9 @@ class LiveVoter extends React.Component {
 			<div>
 				<h1>LiveVoter</h1>
 				<h4>Live viewers now: {this.state.onlineUsers} </h4>
+
+				<h1>this.state.title</h1>
+				<
 			</div>
 		);
 	}

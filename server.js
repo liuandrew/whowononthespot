@@ -7,9 +7,15 @@ var React = require('react');
 var Router = require('react-router');
 var routes = require('./app/routes');
 
+var config = require('./config');
 var mongoose = require('mongoose');
 
 var app = express();
+
+mongoose.connect(config.database);
+mongoose.connection.on('error', function() {
+	console.info('Error: Could not connect to MongoDB. Running mongod?');
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

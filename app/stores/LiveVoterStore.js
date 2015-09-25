@@ -9,6 +9,7 @@ class LiveVoterStore {
 		this.officialScores = [];
 		this.votes = [];
 		this.onlineUsers = 0;
+		this.title = "";
 	}
 
 	onSendVoteSuccess() {
