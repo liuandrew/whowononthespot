@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var episodeSchema = new mongoose.Schema({
-	title: String,
+	title: {type: String, default: ""},
+	episodeNumber: {type: Number, default: 0},
+	airDate: {type: Date, default: Date.now},
 		//red and blue should show initial teams, with Strings being playerId for 
 		//lookup in player database
 		//changeRecord should be encoded as "roundNumber, removePlayer, addPlayer, addedToWhichTeam"
@@ -17,8 +19,8 @@ var episodeSchema = new mongoose.Schema({
 	officialScores: {
 		red: [Number],
 		blue: [Number],
-		redFinalTotal: Number,
-		blueFinalTotal: Number
+		redFinalTotal: {type: Number, default: 0},
+		blueFinalTotal: {type: Number, default: 0}
 	},
 		//same as officialScores
 		//yes and no used for Quick Thinking rounds, using NaN when it is not a QT round
@@ -28,8 +30,8 @@ var episodeSchema = new mongoose.Schema({
 		blue: [Number],
 		yes: [Number],
 		no: [Number],
-		redFinalTotal: Number,
-		blueFinalTotal: Number
+		redFinalTotal: {type: Number, default: 0},
+		blueFinalTotal: {type: Number, default: 0}
 	}
 });
 

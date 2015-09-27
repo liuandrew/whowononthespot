@@ -20,12 +20,12 @@ class LiveVoter extends React.Component {
 			LiveVoterActions.updateOnlineUsers(data);
 		});
 
-		socket.on('update', (data) => {
-
+		socket.on('updateEpisode', (data) => {
+			LiveVoterActions.updateEpisode(data);
 		});
 
 		socket.on('updateVotes', (data) => {
-
+			LiveVoterActions.updateVotes(data);
 		});
 	}
 

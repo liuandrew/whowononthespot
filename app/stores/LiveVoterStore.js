@@ -30,19 +30,19 @@ class LiveVoterStore {
 	}
 
 	onSendVoteSuccess() {
-		
+
 	}
 
 	onSendVoteFail() {
 
 	}
 
-	onGetUpdateSuccess() {
-
+	onGetUpdateSuccess(data) {
+		
 	}
 
 	onGetUpdateFail() {
-
+		toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
 	}
 
 	onUpdateOnlineUsers(data) {
