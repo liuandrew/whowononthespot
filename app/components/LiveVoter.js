@@ -40,11 +40,66 @@ class LiveVoter extends React.Component {
 	render() {
 		return(
 			<div>
-				<h1>LiveVoter</h1>
-				<h4>Live viewers now: {this.state.onlineUsers} </h4>
+				<div className="row">
+					<h1>Title</h1>
+					<h4>Live viewers now: {this.state.onlineUsers} </h4>
+				</div>
+				<div className="row">
+					<div className="text-centered">
+						<h2>Round Number</h2>
+					</div>
+				</div>
+				<div className="row">
+					<div className="small-2 columns">
+						<button>Previous</button>
+					</div>
+					<div className="small-8 columns">
+						<h3>Round Title</h3>
+						<i className="fa fa-calendar"></i>
+					</div>
+					<div className="small-2 columns">
+						<button>Next</button>
+					</div>
+				</div>
 
-				<h1>this.state.title</h1>
-				
+				<div className="row">
+					<div className="small-12 large-5 columns">
+						<div className="row">
+							<div className="small-6 columns">
+								Red Team Player 1
+							</div>
+							<div className="small-6 columns">
+								Red Team Player 2
+							</div>
+						</div>
+					</div>
+					<div className="large-2 columns show-for-large-up">
+						<h4>VS</h4>
+					</div>
+					<div className="small-12 large-5 columns">
+							<div className="row">
+							<div className="small-6 columns">
+								Blue Team Player 1
+							</div>
+							<div className="small-6 columns">
+								Blue Team Player 2
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="small-4 columns">
+						Red Team Score
+					</div>
+					<div className="small-4 columns">
+						Voting Percentages
+					</div>
+					<div className="small-4 columns">
+						Blue Team Score
+					</div>
+				</div>
+
 			</div>
 		);
 	}

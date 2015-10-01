@@ -4,7 +4,7 @@ var gulpif = require('gulp-if');
 var streamify = require('gulp-streamify');
 var autoprefixer = require('gulp-autoprefixer');
 var cssmin = require('gulp-cssmin');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var source = require('vinyl-source-stream');
@@ -12,6 +12,7 @@ var babelify = require('babelify');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
+var livereload = require('gulp-livereload');
 
 var production = process.env.NODE_ENV === 'production';
 
@@ -95,20 +96,22 @@ gulp.task('browserify-watch', ['browserify-vendor'], function() {
 
 /*
  |--------------------------------------------------------------------------
- | Compile LESS stylesheets.
+ | Compile sass stylesheets.
  |--------------------------------------------------------------------------
  */
 gulp.task('styles', function() {
-  return gulp.src('app/stylesheets/main.less')
+  return gulp.src('app/stylesheets/main.scss')
     .pipe(plumber())
-    .pipe(less())
+    .pipe(sass())
     .pipe(autoprefixer())
     .pipe(gulpif(production, cssmin()))
-    .pipe(gulp.dest('public/css'));
+    .pipe(gulp.dest('public/css'))
+    .pipe(livereload());
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/stylesheets/**/*.less', ['styles']);
+  gulp.watch('app/stylesheets/**/*.scss', ['styles']);
+  livereload.listen();
 });
 
 gulp.task('default', ['styles', 'vendor', 'browserify-watch', 'watch']);
