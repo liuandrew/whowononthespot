@@ -11,7 +11,7 @@ class LiveVoter extends React.Component {
 
 	componentDidMount() {
 		LiveVoterStore.listen(this.onChange);
-		LiveVoterActions.getUpdate();
+		LiveVoterActions.getEpisode();
 
 
 		let socket = io.connect();
@@ -37,11 +37,72 @@ class LiveVoter extends React.Component {
 		this.setState(state);
 	}
 
+	  //click handlers for next and previous buttons, just change currentRound
+	  //in store via actions
+
+	handleClickNext() {
+		if(this.state.currentRound < this.state.rounds.length - 1) {
+			LiveVoterActions.changeRound(1);
+		} 
+	}
+
+	handleClickPrevious() {
+		if(this.state.currentRound > 0) {
+			LiveVoterActions.changeRound(-1);
+		}
+	}
+
 	render() {
+		var displayRound = this.state.currentRound;
+		var roundNodes = this.state.rounds.map((round, index) => {
+			var parsedRound = round.split(", ");
+			var divContainerClassName = "sliding-transition";
+			if(index != displayRound) {
+				divContainerClassName = "sliding-transition hidden hidden-left";
+			} 
+			return(
+				<div className={divContainerClassName}>
+					<h3 className="round-title">{parsedRound[0]}</h3>
+					<h4 className="round-subtitle">{parsedRound[1]}</h4>
+				</div>
+			);
+		});
+		console.log("done mapping rounds");
+		console.log(this.state.votes.red);
+		var voteStatNodes = this.state.votes.red.map((numVotes, index) => {
+			console.log("mapping votes");
+			var red = numVotes;
+			var blue = this.state.votes.blue[index];
+			var divContainerClassName = "sliding-transition";
+			var totalVotes = red + blue;
+			var redBarHeight = {height: Math.floor((red/totalVotes) * 100) + "px"};
+			var blueBarHeight = {height: Math.floor((blue/totalVotes) * 100) + "px"};
+
+			if(index != displayRound) {
+				divContainerClassName = "sliding-transition hidden hidden-left";
+			}
+			if(red == -1 || blue == -1) {
+				return(
+					<div className={divContainerClassName}>
+						No Votes for this round!
+					</div>
+				);
+			}
+			return(
+				<div className={divContainerClassName}>
+					<div className="red-vote-bar" style={redBarHeight}></div>
+					<p className="red-vote-number">{red}</p>
+					<div className="blue-vote-bar" style={blueBarHeight}></div>
+					<p className="blue-vote-number">{blue}</p>
+					<p className="total-vote-number">Total Votes: {totalVotes}</p>
+				</div>
+			)
+		});
+
 		return(
 			<div>
 				<div className="row">
-					<h1>Title</h1>
+					<h1>{this.state.title}</h1>
 					<h4>Live viewers now: {this.state.onlineUsers} </h4>
 				</div>
 				<div className="row">
@@ -51,14 +112,13 @@ class LiveVoter extends React.Component {
 				</div>
 				<div className="row">
 					<div className="small-2 columns">
-						<button>Previous</button>
+						<button onClick={this.handleClickPrevious.bind(this)}>Previous</button>
 					</div>
 					<div className="small-8 columns">
-						<h3>Round Title</h3>
-						<i className="fa fa-calendar"></i>
+						{roundNodes}
 					</div>
 					<div className="small-2 columns">
-						<button>Next</button>
+						<button onClick={this.handleClickNext.bind(this)}>Next</button>
 					</div>
 				</div>
 
@@ -93,7 +153,7 @@ class LiveVoter extends React.Component {
 						Red Team Score
 					</div>
 					<div className="small-4 columns">
-						Voting Percentages
+						{voteStatNodes}
 					</div>
 					<div className="small-4 columns">
 						Blue Team Score

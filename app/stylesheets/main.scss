@@ -1,1 +1,24 @@
 @import 'compiled';
+
+$background-color: #53c4c4;
+$contrast-color: #ffd675;
+$highlight-main-color: #b7f0f0;
+$darker-main-color: #20a8a8;
+$red-main-color: #be0000;
+$blue-main-color: #00bebe;
+
+$header-font: "arial";
+$p-font: "gill sans";
+
+body {
+	background-color: $background-color;
+}
+
+.hidden {
+	display: none;
+	opacity: 0;
+}
+
+.hidden-left {
+	right: 15em;
+}

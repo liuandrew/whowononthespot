@@ -10,6 +10,8 @@ var episodeSchema = new mongoose.Schema({
 	teams: {
 		red: [String],
 		blue: [String],
+		redTeamName: {type: String, default: ""},
+		blueTeamName: {type: String, default: ""},
 		changeRecord: [String]
 	},
 		//rounds should be encoded as "gameTitle, roundTitle"
@@ -23,7 +25,7 @@ var episodeSchema = new mongoose.Schema({
 		blueFinalTotal: {type: Number, default: 0}
 	},
 		//same as officialScores
-		//yes and no used for Quick Thinking rounds, using NaN when it is not a QT round
+		//yes and no used for Quick Thinking rounds, using -1 when it is not a QT round
 		//finalTotals self explanatory
 	votes: {
 		red: [Number],

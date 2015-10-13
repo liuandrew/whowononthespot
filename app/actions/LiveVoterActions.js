@@ -5,23 +5,24 @@ class LiveVoterActions{
 		this.generateActions(
 			'sendVoteSuccess',
 			'sendVoteFail',
-			'getUpdateSuccess',
-			'getUpdateFail',
+			'getEpisodeSuccess',
+			'getEpisodeFail',
 			'updateOnlineUsers',
 			'updateVotesSuccess',
 			'updateVotesFail',
 			'updateEpisodeSuccess',
-			'updateEpisodeFail'
+			'updateEpisodeFail',
+			'updateDisplayedRound'
 		);
 	}
 		//ask server for full episode details up until current point
-	getUpdate() {
+	getEpisode() {
 		$.ajax({ url: '/live/getcurrentepisode'})
 			.done((data) => {
-				this.actions.getUpdateSuccess(data);
+				this.actions.getEpisodeSuccess(data);
 			})
 			.fail((jqXhr) => {
-				this.actions.getUpdateFail(jqXhr);
+				this.actions.getEpisodeFail(jqXhr);
 			});
 	}
 		//apply new vote stats coming in from periodic server emits
@@ -31,6 +32,10 @@ class LiveVoterActions{
 		//apply new episode structure from server emit
 	updateEpiode() {
 
+	}
+
+	changeRound(value) {
+		this.actions.updateDisplayedRound(value);
 	}
 }
 
